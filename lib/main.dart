@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const RootPage() //MyHomePage(title: 'Hunger Kitchen'),
+      home: const MyHomePage(title: 'Hunger Kitchen'),
     );
   }
 }
@@ -146,16 +146,23 @@ class _RootPage extends State<RootPage>{
                 )
               ),
               Container(
+                margin:EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                        Row(children: [
-                        Text("Orders"),
-                        Icon(Icons.delivery_dining)
+                        Text("Orders",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),SizedBox(width: 5,),
+                        Icon(Icons.electric_bike)
                        ],),
                         Row(children: [
-                        Text("Filter"),
+                        Text("Filter",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                                  ),),SizedBox(width: 5,),
                         Icon(Icons.arrow_drop_down)
                        ],),
                     ],
@@ -202,6 +209,9 @@ class _MyHomePageState extends State<MyHomePage> {
     print(hotelNameController.text);
     print(hotelPasswordController.text);
     hotelNameController.text="";
+    Navigator.push(context, MaterialPageRoute(builder: (context){
+      return RootPage();
+    }));
   }
 
   @override
