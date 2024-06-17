@@ -61,24 +61,105 @@ class _RootPage extends State<RootPage>{
                 ),
                 child:const Column(
                   children: [
-                    Row(
+                    Column(
                       children: [
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("27"),
-                            Column(
+                            Row(
                               children: [
-                                Text("June"),
-                                Text("Sat")
+                                Text(
+                                  "27",
+                                  style: TextStyle(
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 73, 12, 4)
+                                  ),
+                                ),
+                      
+                                Column(
+                                  children: [
+                                    Text("June"),
+                                    Text("Sat")
+                                  ],
+                                )
                               ],
+                            ),
+                            Text(
+                              "Order Status",
+                              style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 73, 12, 4)
+                              ),
                             )
                           ],
                         ),
-                        Text("Order Count")
+                        SizedBox(height: 10,),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(children: [
+                              Text("Total",style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500
+                                  ),
+                              ),
+                              Text("25",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                                  ),
+                              ),
+                            ],),
+                            Column(children: [
+                              Text("Pending",style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500
+                                  ),
+                              ),
+                              Text("15",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                                  ),
+                              ),
+                            ],),
+                            Column(children: [
+                              Text("Delivered",style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500
+                                  ),
+                              ),
+                              Text("10",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                                  ),
+                              ),
+                            ],),
+                          ],
+                        )
                       ],
-                    )
+                    ),
+                    
                   ],
                 )
+              ),
+              Container(
+                decoration: BoxDecoration(),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                       Row(children: [
+                        Text("Orders"),
+                        Icon(Icons.delivery_dining)
+                       ],),
+                        Row(children: [
+                        Text("Filter"),
+                        Icon(Icons.arrow_drop_down)
+                       ],),
+                    ],
+                  )
               )
             ],
         )
