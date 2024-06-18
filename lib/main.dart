@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -182,6 +181,7 @@ class _RootPage extends State<RootPage>{
                       child: Image.asset(
                         "assets/burger.png",
                         width: 125,
+                        height: 125,
                         fit:BoxFit.cover,
                       ),
                     ),
@@ -224,6 +224,7 @@ class _RootPage extends State<RootPage>{
                       child: Image.asset(
                         "assets/pizza.png",
                         width: 125,
+                        height: 125,
                         fit:BoxFit.cover,
                       ),
                     ),
@@ -240,6 +241,49 @@ class _RootPage extends State<RootPage>{
                                     fontWeight: FontWeight.w500
                         ),),
                         Text("yunus Khan scholars garden",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),
+                        Text("01*********",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),                   
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                decoration: BoxDecoration(
+                  color:Colors.orange[200],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        "assets/ramen.png",
+                        width: 125,
+                        height: 125,
+                        fit:BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(width: 10,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Ramen x 3 = 200 tk",style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500
+                        ),),
+                        Text("Sirus",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),
+                        Text("House of PtAlmu",style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500
                         ),),
