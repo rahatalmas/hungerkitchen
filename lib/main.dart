@@ -34,7 +34,7 @@ class _RootPage extends State<RootPage>{
   @override 
   Widget build(BuildContext context){
     return Scaffold(
-      backgroundColor: Colors.brown[200],
+      backgroundColor:Colors.orange[100],//const Color.fromARGB(255,251,249,227),
       appBar: AppBar(
         leading: Padding(
           padding: EdgeInsets.only(left: 10),
@@ -56,7 +56,7 @@ class _RootPage extends State<RootPage>{
                 padding:EdgeInsets.all(10),
                 margin:EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: Colors.brown[300],
+                  color: Colors.orange[200], 
                   borderRadius: BorderRadius.circular(10)
                 ),
                 child:const Column(
@@ -167,7 +167,92 @@ class _RootPage extends State<RootPage>{
                        ],),
                     ],
                   )
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                decoration: BoxDecoration(
+                  color:Colors.orange[200],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        "assets/burger.png",
+                        width: 125,
+                        fit:BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(width: 10,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Burger x 2 = 200 tk",style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500
+                        ),),
+                        Text("Pretty Dey",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),
+                        Text("Rowsonwara Scholars Garden",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),
+                        Text("01*********",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),                   
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10),
+                margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                decoration: BoxDecoration(
+                  color:Colors.orange[200],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        "assets/pizza.png",
+                        width: 125,
+                        fit:BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(width: 10,),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Pizza x 2 = 200 tk",style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500
+                        ),),
+                        Text("Rahat Almas",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),
+                        Text("yunus Khan scholars garden",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),
+                        Text("01*********",style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500
+                        ),),                   
+                      ],
+                    )
+                  ],
+                ),
               )
+             
             ],
         )
       ),

@@ -63,6 +63,9 @@ flutter:
     - assets/loginbg.jpeg
     - assets/res.jpeg
     - assets/loginres.png
+    - assets/pizza.png
+    - assets/burger.png
+    - assets/pizzacover.jpeg
     - assets/loginbg1.jpeg
 
 
