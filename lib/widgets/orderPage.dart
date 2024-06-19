@@ -223,7 +223,8 @@ class _OrderPage extends State<OrderPage>{
                  userName: "Rahat Almas",
                  userLocation: "Yunus Khan Scohalars Gargen",
                  userContact: "01733783039"
-              )
+              ),
+
             ],
         )
       );

@@ -27,6 +27,8 @@ class _OrderCard extends State<OrderCard> {
   @override 
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 165,
       padding:const  EdgeInsets.all(10),
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
@@ -34,6 +36,8 @@ class _OrderCard extends State<OrderCard> {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
@@ -47,12 +51,13 @@ class _OrderCard extends State<OrderCard> {
           const SizedBox(
             width: 10,
           ),
-          Column(
+          Expanded(child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 "${widget.foodName} x ${widget.foodQuantity.toString()} = ${widget.totalPrice.toString()}",
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
               ),
               Text(
                 widget.userName,
@@ -60,14 +65,51 @@ class _OrderCard extends State<OrderCard> {
               ),
               Text(
                 widget.userLocation,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                maxLines: 2,
               ),
               Text(
                 widget.userContact,
-                style:const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                style:const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
               ),
+              const SizedBox(height: 5,),
+              Row(children: [
+                    InkWell(
+                    child: Container(
+                      padding:const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                      decoration:const BoxDecoration(
+                        color:Color.fromARGB(255, 35, 151, 41),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: const Row(
+                        children: [
+                          Text("Deliver",style:const TextStyle(fontSize: 13, fontWeight: FontWeight.w500,color: Color.fromARGB(255, 255, 255, 255)),),
+                          SizedBox(width: 3,),
+                          Icon(Icons.send,color: Colors.white,)
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 7,),
+                  InkWell(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                      decoration:const BoxDecoration(
+                        color:Color.fromARGB(255, 182, 21, 21),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: const Row(
+                        children: [
+                          //Text("Remove",style:const TextStyle(fontSize: 17, fontWeight: FontWeight.w500,color: Color.fromARGB(255, 255, 255, 255)),),
+                          //SizedBox(width: 3,),
+                          Icon(Icons.delete,color: Colors.white,)
+                        ],
+                      ),
+                    ),
+                  )
+              ],)
             ],
-          )
+          )),
         ],
       ),
     );
