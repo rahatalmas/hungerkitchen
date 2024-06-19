@@ -33,7 +33,7 @@ class RootPage extends StatefulWidget{
 
 class _RootPage extends State<RootPage>{
 
-  final List<Widget> widgets = [
+  final List<Widget> widgets = const [
     Text("Home"),
     OrderPage(),
     Text("Foods"),
