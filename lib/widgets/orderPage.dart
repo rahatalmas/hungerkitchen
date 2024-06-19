@@ -129,102 +129,39 @@ class _OrderPage extends State<OrderPage>{
                     ],
                   )
               ),
-              Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                decoration: BoxDecoration(
-                  color:Colors.orange[200],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        "assets/burger.png",
-                        width: 125,
-                        height: 125,
-                        fit:BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Burger x 2 = 200 tk",style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500
-                        ),),
-                        Text("Pretty Dey",style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500
-                        ),),
-                        Text("Rowsonwara Scholars Garden",style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500
-                        ),),
-                        Text("01*********",style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500
-                        ),),                   
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
-                decoration: BoxDecoration(
-                  color:Colors.orange[200],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(
-                        "assets/ramen.png",
-                        width: 125,
-                        height: 125,
-                        fit:BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Ramen x 3 = 200 tk",style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500
-                        ),),
-                        Text("Sirus",style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500
-                        ),),
-                        Text("House of PtAlmu",style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500
-                        ),),
-                        Text("01*********",style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500
-                        ),),                   
-                      ],
-                    )
-                  ],
-                ),
-              ),
               const OrderCard(
-                 foodImage: "assets/pizza.png", 
-                 foodName: "Pizza",
-                 foodQuantity: 2,
-                 totalPrice:200,
-                 userName: "Rahat Almas",
-                 userLocation: "Yunus Khan Scohalars Gargen",
+                 foodImage: "assets/ramen.png", 
+                 foodName: "Ramen",
+                 foodQuantity: 3,
+                 totalPrice:1100,
+                 userName: "Sirus",
+                 userLocation: "PtAlmu House",
                  userContact: "01733783039"
               ),
-
+              const OrderCard(
+                 foodImage: "assets/burger.png", 
+                 foodName: "Chicken Burger",
+                 foodQuantity: 2,
+                 totalPrice:200,
+                 userName: "Pretty Dey",
+                 userLocation: "Rowsonwara Scohalars Gargen",
+                 userContact: "01*********"
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                physics:const NeverScrollableScrollPhysics(),
+                itemCount: 10,
+                itemBuilder: (BuildContext context,int index){
+                  return const OrderCard(
+                  foodImage: "assets/pizza.png", 
+                  foodName: "Pizza",
+                  foodQuantity: 2,
+                  totalPrice:200,
+                  userName: "Rahat Almas",
+                  userLocation: "Yunus Khan Scohalars Gargen",
+                  userContact: "01733783039"
+                );
+              })
             ],
         )
       );
