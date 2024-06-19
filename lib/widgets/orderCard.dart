@@ -6,6 +6,7 @@ class OrderCard extends StatefulWidget {
       required this.foodImage,
       required this.foodName,
       required this.foodQuantity,
+      required this.totalPrice,
       required this.userName,
       required this.userLocation,
       required this.userContact
@@ -14,6 +15,7 @@ class OrderCard extends StatefulWidget {
   final String foodImage;
   final String foodName;
   final int foodQuantity;
+  final int totalPrice;
   final String userName;
   final String userLocation;
   final String userContact;
@@ -36,33 +38,33 @@ class _OrderCard extends State<OrderCard> {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
-              "assets/pizza.png",
+              widget.foodImage,
               width: 125,
               height: 125,
               fit: BoxFit.cover,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Pizza x 2 = 200 tk",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                "${widget.foodName} x ${widget.foodQuantity.toString()} = ${widget.totalPrice.toString()}",
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
               Text(
-                "Rahat Almas",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                widget.userName,
+                style:const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
               ),
               Text(
-                "yunus Khan scholars garden",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                widget.userLocation,
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
               ),
               Text(
-                "01*********",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                widget.userContact,
+                style:const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
               ),
             ],
           )
@@ -71,6 +73,3 @@ class _OrderCard extends State<OrderCard> {
     );
   }
 }
-
-
-OrderCard a = OrderCard(foodImage: "assets/pizza.png", foodName: "Pizza", foodQuantity: 2, userName: "Rahat Almas", userLocation: "Yunus Khan Scohalars Gargen", userContact: "01733783039")

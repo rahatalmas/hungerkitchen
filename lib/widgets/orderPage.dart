@@ -219,6 +219,7 @@ class _OrderPage extends State<OrderPage>{
                  foodImage: "assets/pizza.png", 
                  foodName: "Pizza",
                  foodQuantity: 2,
+                 totalPrice:200,
                  userName: "Rahat Almas",
                  userLocation: "Yunus Khan Scohalars Gargen",
                  userContact: "01733783039"
