@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hungerkitchen/widgets/homePage.dart';
 import 'package:hungerkitchen/widgets/login.dart';
 import 'package:hungerkitchen/widgets/orderPage.dart';
 
@@ -34,7 +35,7 @@ class RootPage extends StatefulWidget{
 class _RootPage extends State<RootPage>{
 
   final List<Widget> widgets = const [
-    Text("Home"),
+    HomePage(),
     OrderPage(),
     Text("Foods"),
     Text("Notifications"),

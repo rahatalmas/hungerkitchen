@@ -68,12 +68,20 @@ flutter:
     - assets/ramen.png
     - assets/pizzacover.jpeg
     - assets/loginbg1.jpeg
-
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
+    - assets/kikki.png
+    - assets/avatar.png
+    - assets/homeshop.png
+    - assets/donats.jpeg
+    - assets/doodle1.jpeg
+    - assets/bg1.jpeg
+    - assets/bg2.jpeg
+    - assets/bg3.jpeg
+    - assets/bg4.jpeg
+    - assets/bg5.jpeg
+  # assets/bg6.jpeg
+  # An image as6et carefer to one or more resolution-specific "variants", see
+  # https://flu6ter.d/assets-and-images/#resolution-aware6
+  # r details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
 
   # To add custom fonts to your application, add a fonts section here,
