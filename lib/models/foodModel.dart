@@ -34,18 +34,45 @@ class Food {
       foodReview: json['food_review'],
       foodProviderId: json['food_provider_id'],
     );
-  }
+  }  
 
-  Map<String, dynamic> toJson() {
+}
+
+
+class UploadFood {
+  final String foodName;
+  final String foodPrice;
+  final String foodCategory;
+  final String foodDescription;
+  final String foodPicture;
+
+  UploadFood({
+    required this.foodName,
+    required this.foodPrice,
+    required this.foodCategory,
+    required this.foodDescription,
+    required this.foodPicture,
+  });
+
+  factory UploadFood.fromJson(Map<String, dynamic> json) {
+    return UploadFood(
+      foodName: json['food_name'],
+      foodPrice: json['food_price'],
+      foodCategory: json['food_category'],
+      foodDescription: json['food_description'],
+      foodPicture: json['food_picture'],
+    );
+  }  
+
+    Map<String, dynamic> toJson() {
     return {
       'food_name': foodName,
       'food_price': foodPrice.toString(),
       'food_category': foodCategory,
       'food_description': foodDescription,
       'food_picture': foodPicture,
-      'food_provider_id': foodProviderId,
     };
   }
-  
 
 }
+

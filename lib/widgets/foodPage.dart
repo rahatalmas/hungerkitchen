@@ -87,7 +87,7 @@ class _FoodPageState extends State<FoodPage> {
                         Navigator.push(
                           context, MaterialPageRoute(
                             builder: (BuildContext context){
-                              return FoodUploadPage();
+                              return FoodUploadPage(hotelId: _hotelData!.hotelId,);
                             }
                           )
                         );

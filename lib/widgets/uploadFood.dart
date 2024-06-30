@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:hungerkitchen/apiCalls/foodUploadApi.dart';
+import 'package:hungerkitchen/models/foodModel.dart';
 
 class FoodUploadPage extends StatefulWidget {
-  const FoodUploadPage({Key? key}) : super(key: key);
-
+  const FoodUploadPage({super.key,required this.hotelId});
+  final int hotelId;
   @override
   _FoodUploadPageState createState() => _FoodUploadPageState();
 }
@@ -22,7 +24,7 @@ class _FoodUploadPageState extends State<FoodUploadPage> {
   String foodDescription = "";
   String foodPicture = "";
 
-  void _formSubmitController(BuildContext context) async {
+  void foodUpload() {
     if (_formKey.currentState!.validate()) {
       setState(() {
         foodName = foodNameController.text;
@@ -31,10 +33,19 @@ class _FoodUploadPageState extends State<FoodUploadPage> {
         foodDescription = foodDescriptionController.text;
         foodPicture = foodPictureController.text;
       });
-       /* ScaffoldMessenger.of(context).showSnackBar(
+      UploadFood food = UploadFood(
+        foodName: foodName,
+        foodPrice: foodPrice.toString(),
+        foodCategory: foodCategory,
+        foodDescription: foodDescription,
+        foodPicture: foodPicture,
+      );
+      uploadFood(food, widget.hotelId);
+      ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Food uploaded successfully')),
-        );*/
+      );
     }
+    print("uploader ...");
   }
 
   @override
@@ -126,7 +137,10 @@ class _FoodUploadPageState extends State<FoodUploadPage> {
               ),
               const SizedBox(height: 15),
               ElevatedButton(
-                onPressed: () => _formSubmitController(context),
+                onPressed: () {
+                  print("hello");
+                  foodUpload();
+                },
                 child: const Text('Upload Food'),
               ),
             ],
