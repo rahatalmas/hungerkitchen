@@ -35,4 +35,17 @@ class Food {
       foodProviderId: json['food_provider_id'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'food_name': foodName,
+      'food_price': foodPrice.toString(),
+      'food_category': foodCategory,
+      'food_description': foodDescription,
+      'food_picture': foodPicture,
+      'food_provider_id': foodProviderId,
+    };
+  }
+  
+
 }

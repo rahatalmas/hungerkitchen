@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hungerkitchen/apiCalls/loginApi.dart';
 import 'package:hungerkitchen/globalStates/hotelLoginProvider.dart';
-import 'package:hungerkitchen/main.dart';
 import 'package:hungerkitchen/models/hotelModel.dart';
 import 'package:provider/provider.dart';
 
