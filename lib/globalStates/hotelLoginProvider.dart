@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hungerkitchen/models/hotelModel.dart';
 
 class LoginInfoProvider extends ChangeNotifier {
-  Future<HotelLoginResponse>? _loginInfo;
-  void setLoginInfo(Future<HotelLoginResponse> info) {
+  Future<dynamic>? _loginInfo;
+  void setLoginInfo(Future<dynamic> info) {
     _loginInfo = info;
     notifyListeners();
   }
@@ -11,10 +10,7 @@ class LoginInfoProvider extends ChangeNotifier {
     _loginInfo = null;
     notifyListeners();
   }
-  Future<HotelLoginResponse>? get loginInfo => _loginInfo;
-  
-  
-
+  Future<dynamic>? get loginInfo => _loginInfo;
 
 }
 

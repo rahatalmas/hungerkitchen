@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:hungerkitchen/apiCalls/loginApi.dart';
+import 'package:hungerkitchen/apiCalls/registerApi.dart';
 import 'package:hungerkitchen/globalStates/hotelLoginProvider.dart';
 import 'package:hungerkitchen/models/hotelModel.dart';
-import 'package:hungerkitchen/widgets/register.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.title});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key, required this.title});
   final String title;
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<RegisterPage> {
   final hotelNameController = TextEditingController();
   final hotelPasswordController = TextEditingController();
-  Future<HotelLoginResponse> loginHandler(){
-    print(hotelNameController.text);
-    print(hotelPasswordController.text);
-    Future<HotelLoginResponse> h = hotelLogin(hotelNameController.text, hotelPasswordController.text); 
+  final hotelDescriptionController = TextEditingController();
+  final hotelPictureController = TextEditingController();
+
+  Future<HotelRegisterResponse> registerHandler(){
+    Future<HotelRegisterResponse> h = hotelRegister(hotelNameController.text, hotelPasswordController.text,hotelDescriptionController.text,hotelPictureController.text); 
     return h;
     //hotelNameController.text="";
   }
@@ -158,6 +158,84 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     )
                   ),
+                  SizedBox(height: 10,)
+                  ,
+                  TextFormField(
+                    controller: hotelDescriptionController,
+                    obscureText: true,
+                    decoration:const InputDecoration(
+                      filled: true,
+                      fillColor: Color.fromARGB(244, 255, 254, 254),
+                      label: Text("location details"),
+                      border:OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color:Color.fromARGB(255, 44, 12, 1),
+                          width: 3
+                        )
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color:Color.fromARGB(255, 44, 12, 1),
+                          width: 3
+                        )
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color:Color.fromARGB(255, 44, 12, 1),
+                          width: 3
+                        )
+                      ),
+                      focusedBorder:  OutlineInputBorder(
+                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color:Color.fromARGB(255, 92, 49, 34),
+                          width: 3
+                        )
+                      ),
+                    )
+                  ),
+                  SizedBox(height: 10,)
+                  ,
+                  TextFormField(
+                    controller: hotelPictureController,
+                    obscureText: true,
+                    decoration:const InputDecoration(
+                      filled: true,
+                      fillColor: Color.fromARGB(244, 255, 254, 254),
+                      label: Text("Picture url"),
+                      border:OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color:Color.fromARGB(255, 44, 12, 1),
+                          width: 3
+                        )
+                      ),
+                      disabledBorder: OutlineInputBorder(
+                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color:Color.fromARGB(255, 44, 12, 1),
+                          width: 3
+                        )
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color:Color.fromARGB(255, 44, 12, 1),
+                          width: 3
+                        )
+                      ),
+                      focusedBorder:  OutlineInputBorder(
+                         borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          color:Color.fromARGB(255, 92, 49, 34),
+                          width: 3
+                        )
+                      ),
+                    )
+                  ),
                   SizedBox(height: 10,),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -173,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
                         return InkWell(
                           child: const Center(
                             child: Text(
-                              "Login",
+                              "Register",
                               style: TextStyle(
                                   fontSize: 25,
                                   fontWeight: FontWeight.w600,
@@ -181,7 +259,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                           onTap:(){
-                            hotel.setLoginInfo(loginHandler());
+                            hotel.setLoginInfo(registerHandler());
                           },
                         );
                       },
@@ -193,7 +271,7 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     children: [
                       SizedBox(width: 5,),
-                      Text("Don't Have Account? ",
+                      Text("Have Account? ",
                         style: TextStyle(
                       color: Colors.brown[700],
                           fontSize: 17,
@@ -201,14 +279,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),),
                       InkWell(
                         onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder:(BuildContext context){
-                              return RegisterPage(title: "Hotel Register",);
-                            })
-                          );
+                          Navigator.pop(context);
                         },
-                        child: Text("SignUp",
+                        child: Text("Login",
                           style: TextStyle(
                               color: Colors.green[700],
                               fontSize: 17,
