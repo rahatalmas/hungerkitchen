@@ -35,6 +35,16 @@ class Food {
       foodProviderId: json['food_provider_id'],
     );
   }  
+    Map<String, dynamic> toJson() {
+    return {
+      'food_name': foodName,
+      'food_price': foodPrice,
+      'food_category': foodCategory,
+      'food_instock': foodInstock,
+      'food_description': foodDescription,
+      'food_picture': foodPicture,
+    };
+  }
 
 }
 
@@ -72,7 +82,41 @@ class UploadFood {
       'food_description': foodDescription,
       'food_picture': foodPicture,
     };
+    
   }
+
 
 }
 
+class UpdateFood{
+  final int foodId;
+  final String foodName;
+  final String foodPrice;
+  final String foodCategory;
+  final bool foodInstock;
+  final String foodDescription;
+  final String foodPicture;
+  final int? foodReview; 
+
+  UpdateFood({
+    required this.foodId,
+    required this.foodName,
+    required this.foodPrice,
+    required this.foodCategory,
+    required this.foodInstock,
+    required this.foodDescription,
+    required this.foodPicture,
+    this.foodReview,
+  });
+      Map<String, dynamic> toJson() {
+    return {
+      'food_name': foodName,
+      'food_price': foodPrice,
+      'food_category': foodCategory,
+      'food_instock': foodInstock,
+      'food_description': foodDescription,
+      'food_picture': foodPicture,
+    };
+  }
+
+}

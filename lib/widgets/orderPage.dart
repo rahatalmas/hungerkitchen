@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hungerkitchen/apiCalls/deleteOrderApi.dart';
 import 'package:hungerkitchen/apiCalls/orderApi.dart';
 import 'package:hungerkitchen/globalStates/hotelLoginProvider.dart';
 import 'package:hungerkitchen/models/hotelModel.dart';
@@ -186,7 +187,8 @@ class _OrderPage extends State<OrderPage>{
                   totalPrice:_orders[index].foodInfo.foodPrice.toInt(),
                   userName: _orders[index].userInfo.userName,
                   userLocation: "Yunus Khan Scohalars Gargen",
-                  userContact: "01733783039"
+                  userContact: "01733783039",
+                  orderId:_orders[index].orderId
                 );
               })
             ],

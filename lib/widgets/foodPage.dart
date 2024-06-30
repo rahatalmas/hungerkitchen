@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hungerkitchen/apiCalls/deleteApi.dart';
+import 'package:hungerkitchen/apiCalls/foodUpdateApi.dart';
 import 'package:hungerkitchen/apiCalls/foodUploadApi.dart';
 import 'package:hungerkitchen/apiCalls/hoteApi.dart';
 import 'package:hungerkitchen/apiCalls/hotelFoodsApi.dart';
 import 'package:hungerkitchen/globalStates/hotelLoginProvider.dart';
 import 'package:hungerkitchen/models/foodModel.dart';
 import 'package:hungerkitchen/models/hotelModel.dart';
+import 'package:hungerkitchen/widgets/updateFood.dart';
 import 'package:hungerkitchen/widgets/uploadFood.dart';
 import 'package:provider/provider.dart';
 
@@ -65,6 +68,27 @@ class _FoodPageState extends State<FoodPage> {
       });
     }
   }
+
+void _deleteFood(int foodId) async {
+  String message = await deleteFood(foodId);
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Delete Food'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -231,8 +255,10 @@ class _FoodPageState extends State<FoodPage> {
                                         Row(children: [
                                           InkWell(
                                           onTap: () {
-                                            // Handle food removal logic
                                             print("Remove food: ${_foods[index].foodName}");
+                                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                                              return updateFoodPage(foodId: _foods[index].foodId);
+                                            }));
                                           },
                                           child: Container(
                                             padding: EdgeInsets.all(10),
@@ -249,8 +275,8 @@ class _FoodPageState extends State<FoodPage> {
                                         SizedBox(width: 10,),
                                         InkWell(
                                           onTap: () {
-                                            // Handle food removal logic
                                             print("Remove food: ${_foods[index].foodName}");
+                                            _deleteFood(_foods[index].foodId);
                                           },
                                           child: Container(
                                             padding: EdgeInsets.all(10),

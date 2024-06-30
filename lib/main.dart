@@ -65,10 +65,9 @@ class RootPage extends StatefulWidget{
 class _RootPage extends State<RootPage>{
 
   final List<Widget> widgets = const [
-    HomePage(),
     OrderPage(),
     FoodPage(),
-    Text("Profile")
+    HomePage(),
   ];
   
   int selectedIndex = 0;
@@ -83,10 +82,6 @@ class _RootPage extends State<RootPage>{
     return Scaffold(
       backgroundColor:Colors.orange[100],//const Color.fromARGB(255,251,249,227),
       appBar: AppBar(
-        leading:const Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Icon(Icons.menu,color: Colors.white,),
-        ),
         title:const Text(
           "Hunger Kitchen",
           style: TextStyle(
@@ -101,11 +96,11 @@ class _RootPage extends State<RootPage>{
         currentIndex: selectedIndex,
         backgroundColor:const Color.fromARGB(255, 75, 25, 15),
         selectedItemColor:const Color.fromARGB(255, 255, 255, 255),
+        unselectedItemColor: Colors.white,
         onTap: (int idx){
           changePage(idx);
         },
         items: const[
-          BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
           BottomNavigationBarItem(icon: Icon(Icons.delivery_dining_outlined),label: "Orders",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
           BottomNavigationBarItem(icon: Icon(Icons.dashboard),label: "Foods",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
           BottomNavigationBarItem(icon: Icon(Icons.food_bank),label: "MyShop",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
