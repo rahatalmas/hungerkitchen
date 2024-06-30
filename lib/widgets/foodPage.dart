@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hungerkitchen/apiCalls/foodUploadApi.dart';
 import 'package:hungerkitchen/apiCalls/hotelFoodsApi.dart';
 import 'package:hungerkitchen/globalStates/hotelLoginProvider.dart';
 import 'package:hungerkitchen/models/foodModel.dart';
 import 'package:hungerkitchen/models/hotelModel.dart';
+import 'package:hungerkitchen/widgets/uploadFood.dart';
 import 'package:provider/provider.dart';
 
 class FoodPage extends StatefulWidget {
@@ -77,7 +79,23 @@ class _FoodPageState extends State<FoodPage> {
                             ],
                           ),
                         ),
+
                       ],
+                    ),
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(
+                          context, MaterialPageRoute(
+                            builder: (BuildContext context){
+                              return FoodUploadPage();
+                            }
+                          )
+                        );
+                      },
+                      child: Container(
+                    
+                        child: Text("Add Food"),
+                      ),
                     ),
                     SizedBox(
                       height: 10,
