@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hungerkitchen/apiCalls/orderApi.dart';
+import 'package:hungerkitchen/globalStates/hotelLoginProvider.dart';
+import 'package:hungerkitchen/models/hotelModel.dart';
+import 'package:hungerkitchen/models/orderModel.dart';
+import 'package:hungerkitchen/widgets/orderCard.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -7,6 +13,54 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+
+  HotelLoginResponse? _hotelData;
+
+  List<Order> _orders = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+    _createMap();
+  }
+
+  Future<void> _fetchData() async {
+    try {
+      final loginInfoProvider =
+      Provider.of<LoginInfoProvider>(context, listen: false);
+      final loginInfo = await loginInfoProvider.loginInfo;
+      if (loginInfo != null) {
+        List<Order> orders = await fetchOrders(loginInfo.hotelId);
+        setState(() {
+          _hotelData = loginInfo;
+          _orders = orders;
+          _isLoading = false; 
+          _createMap();
+          
+        });
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  Map<String, int> foodOrderCount = {};
+  void _createMap(){
+    for (var order in _orders) {
+      var foodName = order.foodInfo.foodName;
+      foodOrderCount[foodName] = (foodOrderCount[foodName] ?? 0) + 1;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -107,8 +161,10 @@ class _HomePage extends State<HomePage> {
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              children: List.generate(6, (index) {
-                return Container(
+              children: foodOrderCount.entries.map((entry) {
+                  String foodName = entry.key;
+                  int count = entry.value;
+                  return Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.orange[200],
@@ -125,7 +181,7 @@ class _HomePage extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Image.asset(
+                     Image.asset(
                         "assets/pizza.png",
                         height: 60,
                         width: 60,
@@ -134,13 +190,13 @@ class _HomePage extends State<HomePage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Text("Pizza",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
-                         Text("Total 3",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15),)],
+                        children: [Text(foodName.length>10?foodName.substring(0,10):foodName,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17),),
+                         Text("Total ${count}",style: TextStyle(fontWeight: FontWeight.w400,fontSize: 15),)],
                       )
                     ],
                   ),
                 );
-              }),
+                }).toList(),
             ),
           )
         ],

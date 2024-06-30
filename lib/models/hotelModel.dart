@@ -74,3 +74,33 @@ class HotelRegisterResponse {
     );
   }
 }
+
+
+class Hotel {
+  final int hotelId;
+  final String hotelName;
+  final String? hotelContact;
+  final String hotelPassword;
+  final String hotelDescription;
+  final String hotelPicture;
+
+  Hotel({
+    required this.hotelId,
+    required this.hotelName,
+    required this.hotelContact,
+    required this.hotelPassword,
+    required this.hotelDescription,
+    required this.hotelPicture,
+  });
+
+  factory Hotel.fromJson(Map<String, dynamic> json) {
+    return Hotel(
+      hotelId: json['hotel_id'] as int,
+      hotelName: json['hotel_name'] as String,
+      hotelContact: json['hotel_contact'] as String?,
+      hotelPassword: json['hotel_password'] as String,
+      hotelDescription: json['hotel_description'] as String,
+      hotelPicture: json['hotel_picture'] as String,
+    );
+  }
+}

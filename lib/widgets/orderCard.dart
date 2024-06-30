@@ -28,7 +28,7 @@ class _OrderCard extends State<OrderCard> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 165,
+      height: 175,
       padding:const  EdgeInsets.all(10),
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
@@ -83,7 +83,7 @@ class _OrderCard extends State<OrderCard> {
                       ),
                       child: const Row(
                         children: [
-                          Text("Deliver",style:const TextStyle(fontSize: 13, fontWeight: FontWeight.w500,color: Color.fromARGB(255, 255, 255, 255)),),
+                          Text("Pending..",style:const TextStyle(fontSize: 13, fontWeight: FontWeight.w500,color: Color.fromARGB(255, 255, 255, 255)),),
                           SizedBox(width: 3,),
                           Icon(Icons.send,color: Colors.white,)
                         ],

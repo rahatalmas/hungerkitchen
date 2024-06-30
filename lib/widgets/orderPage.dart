@@ -174,24 +174,6 @@ class _OrderPage extends State<OrderPage>{
                     ],
                   )
               ),
-              const OrderCard(
-                 foodImage: "assets/ramen.png", 
-                 foodName: "Ramen",
-                 foodQuantity: 3,
-                 totalPrice:1100,
-                 userName: "Sirus",
-                 userLocation: "PtAlmu House",
-                 userContact: "01733783039"
-              ),
-              const OrderCard(
-                 foodImage: "assets/burger.png", 
-                 foodName: "Chicken Burger",
-                 foodQuantity: 2,
-                 totalPrice:200,
-                 userName: "Pretty Dey",
-                 userLocation: "Rowsonwara Scohalars Gargen",
-                 userContact: "01*********"
-              ),
               ListView.builder(
                 shrinkWrap: true,
                 physics:const NeverScrollableScrollPhysics(),
