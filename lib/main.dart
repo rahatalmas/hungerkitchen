@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hungerkitchen/globalStates/hotelLoginProvider.dart';
+import 'package:hungerkitchen/widgets/foodPage.dart';
 import 'package:hungerkitchen/widgets/homePage.dart';
 import 'package:hungerkitchen/widgets/login.dart';
 import 'package:hungerkitchen/widgets/orderPage.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+     MultiProvider(
+         providers:[
+           ChangeNotifierProvider(create: (context)=>LoginInfoProvider()),
+         ],
+       child: const MyApp(),
+     ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,14 +22,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const LoginPage(title: 'Hunger Kitchen'),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Hunger',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: Consumer<LoginInfoProvider>(
+          builder: (context,hotel,child){
+            print("Main Page 1st ${hotel.loginInfo}");
+            if(hotel.loginInfo != null){
+              print(hotel.loginInfo);
+              return FutureBuilder(
+                  future: hotel.loginInfo,
+                  builder: (context,snapshot){
+                if(snapshot.hasData){
+                  return RootPage();
+                }else{
+                  return LoginPage(title: "Hunger Kitchen");
+                }
+              });
+            }else{
+              return LoginPage(title: "Hunger Kitchen");
+            }
+          },
+        )
+
+        );
   }
 }
 
@@ -37,7 +66,7 @@ class _RootPage extends State<RootPage>{
   final List<Widget> widgets = const [
     HomePage(),
     OrderPage(),
-    Text("Foods"),
+    FoodPage(),
     Text("Notifications"),
     Text("Profile")
   ];

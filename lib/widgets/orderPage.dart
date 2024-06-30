@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hungerkitchen/apiCalls/orderApi.dart';
+import 'package:hungerkitchen/globalStates/hotelLoginProvider.dart';
+import 'package:hungerkitchen/models/hotelModel.dart';
+import 'package:hungerkitchen/models/orderModel.dart';
 import 'package:hungerkitchen/widgets/orderCard.dart';
+import 'package:provider/provider.dart';
 
 class OrderPage extends StatefulWidget{
   const OrderPage({super.key});
@@ -8,9 +13,49 @@ class OrderPage extends StatefulWidget{
 }
 
 class _OrderPage extends State<OrderPage>{
+
+  HotelLoginResponse? _hotelData;
+
+  List<Order> _orders = [];
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
+
+  Future<void> _fetchData() async {
+    try {
+      final loginInfoProvider =
+      Provider.of<LoginInfoProvider>(context, listen: false);
+      final loginInfo = await loginInfoProvider.loginInfo;
+      if (loginInfo != null) {
+        List<Order> orders = await fetchOrders(loginInfo.hotelId);
+        setState(() {
+          _hotelData = loginInfo;
+          _orders = orders;
+          _isLoading = false;
+        });
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
   @override 
   Widget build(BuildContext context){
-    return SingleChildScrollView(
+    return _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : _hotelData != null
+          ? SingleChildScrollView(
         child: Column(
             children: [
               Container(
@@ -20,11 +65,11 @@ class _OrderPage extends State<OrderPage>{
                   color: Colors.orange[200], 
                   borderRadius: BorderRadius.circular(10)
                 ),
-                child:const Column(
+                child: Column(
                   children: [
                     Column(
                       children: [
-                        Row(
+                        const Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -63,12 +108,12 @@ class _OrderPage extends State<OrderPage>{
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(children: [
-                              Text("Total",style: TextStyle(
+                              const Text("Total",style: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w500
                                   ),
                               ),
-                              Text("25",style: TextStyle(
+                              Text(_orders.length.toString(),style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500
                                   ),
@@ -108,8 +153,8 @@ class _OrderPage extends State<OrderPage>{
               ),
               Container(
                 margin:EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(),
-                  child: Row(
+                decoration: const BoxDecoration(),
+                  child:const  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                        Row(children: [
@@ -150,20 +195,22 @@ class _OrderPage extends State<OrderPage>{
               ListView.builder(
                 shrinkWrap: true,
                 physics:const NeverScrollableScrollPhysics(),
-                itemCount: 10,
+                itemCount: _orders.length,
                 itemBuilder: (BuildContext context,int index){
-                  return const OrderCard(
-                  foodImage: "assets/pizza.png", 
-                  foodName: "Pizza",
-                  foodQuantity: 2,
-                  totalPrice:200,
-                  userName: "Rahat Almas",
+                  return  OrderCard(
+                  foodImage: _orders[index].foodInfo.foodPicture, 
+                  foodName: _orders[index].foodInfo.foodName,
+                  foodQuantity: _orders[index].quantity,
+                  totalPrice:_orders[index].foodInfo.foodPrice.toInt(),
+                  userName: _orders[index].userInfo.userName,
                   userLocation: "Yunus Khan Scohalars Gargen",
                   userContact: "01733783039"
                 );
               })
             ],
         )
-      );
+      ):Center(
+          child: Text(' data not available'),
+       );
   }
 }

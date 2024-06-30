@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hungerkitchen/apiCalls/loginApi.dart';
+import 'package:hungerkitchen/globalStates/hotelLoginProvider.dart';
 import 'package:hungerkitchen/main.dart';
+import 'package:hungerkitchen/models/hotelModel.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.title});
@@ -12,14 +16,12 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final hotelNameController = TextEditingController();
   final hotelPasswordController = TextEditingController();
-
-  void loginHandler(){
+  Future<HotelLoginResponse> loginHandler(){
     print(hotelNameController.text);
     print(hotelPasswordController.text);
-    hotelNameController.text="";
-    Navigator.push(context, MaterialPageRoute(builder: (context){
-      return RootPage();
-    }));
+    Future<HotelLoginResponse> h = hotelLogin(hotelNameController.text, hotelPasswordController.text); 
+    return h;
+    //hotelNameController.text="";
   }
 
   @override
@@ -157,20 +159,57 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ),
                   SizedBox(height: 10,),
-                  InkWell(
-                    onTap: loginHandler,
-                    child:Container(
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width,
-                      padding:EdgeInsets.all(12),
-                      decoration:BoxDecoration(
-                          color: const Color.fromARGB(255, 77, 38, 24),
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.black45,width: 3,style: BorderStyle.solid)
-                      ),
-                      child: Text("Login",style: TextStyle(color: Colors.white,fontSize:17,fontWeight: FontWeight.bold ),),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        //image:const DecorationImage(
+                          //image: AssetImage("assets/download (1).jpg"),
+                        //),
+                        color: Colors.brown[500],
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child:Consumer<LoginInfoProvider>(
+                      builder: (context,hotel,child){
+                        return InkWell(
+                          child: const Center(
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          onTap:(){
+                            hotel.setLoginInfo(loginHandler());
+                          },
+                        );
+                      },
                     )
-                  )
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(width: 5,),
+                      Text("Don't Have Account? ",
+                        style: TextStyle(
+                      color: Colors.brown[700],
+                          fontSize: 17,
+                          fontWeight: FontWeight.w400
+                      ),),
+                      InkWell(
+                        child: Text("SignUp",
+                          style: TextStyle(
+                              color: Colors.green[700],
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ],),
               )
             ]

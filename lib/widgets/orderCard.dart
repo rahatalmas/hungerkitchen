@@ -41,7 +41,7 @@ class _OrderCard extends State<OrderCard> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
+            child: Image.network(
               widget.foodImage,
               width: 125,
               height: 125,
