@@ -4,7 +4,7 @@ import 'package:hungerkitchen/models/foodModel.dart';
 
 
 Future<List<Food>> fetchFood(int hotelId) async {
-  final url = Uri.parse('http://192.168.243.213:5000/hotel/foods/$hotelId');
+  final url = Uri.parse('http://192.168.1.106:5000/hotel/foods/$hotelId');
   final response = await http.get(url);
   if(response.statusCode == 200){
     List<dynamic> jsonData = jsonDecode(response.body);

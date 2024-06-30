@@ -6,7 +6,7 @@ class User {
   final String userContact;
   final String userPicture;
   final double userBudget;
-  final String? userAuthToken; // nullable
+  final String? userAuthToken;
 
   User({
     required this.userId,
