@@ -11,7 +11,6 @@ class LoginInfoProvider extends ChangeNotifier {
     notifyListeners();
   }
   Future<dynamic>? get loginInfo => _loginInfo;
-
 }
 
 

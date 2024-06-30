@@ -20,6 +20,7 @@ class _LoginPageState extends State<RegisterPage> {
 
   Future<HotelRegisterResponse> registerHandler(){
     Future<HotelRegisterResponse> h = hotelRegister(hotelNameController.text, hotelPasswordController.text,hotelDescriptionController.text,hotelPictureController.text); 
+    Navigator.pop(context);
     return h;
     //hotelNameController.text="";
   }
@@ -162,7 +163,6 @@ class _LoginPageState extends State<RegisterPage> {
                   ,
                   TextFormField(
                     controller: hotelDescriptionController,
-                    obscureText: true,
                     decoration:const InputDecoration(
                       filled: true,
                       fillColor: Color.fromARGB(244, 255, 254, 254),
@@ -201,7 +201,6 @@ class _LoginPageState extends State<RegisterPage> {
                   ,
                   TextFormField(
                     controller: hotelPictureController,
-                    obscureText: true,
                     decoration:const InputDecoration(
                       filled: true,
                       fillColor: Color.fromARGB(244, 255, 254, 254),
@@ -260,6 +259,7 @@ class _LoginPageState extends State<RegisterPage> {
                           ),
                           onTap:(){
                             hotel.setLoginInfo(registerHandler());
+              
                           },
                         );
                       },

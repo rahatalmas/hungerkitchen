@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
               return FutureBuilder(
                   future: hotel.loginInfo,
                   builder: (context,snapshot){
+                    print(snapshot.hasData);
                 if(snapshot.hasData){
                   return RootPage();
                 }else{
@@ -67,7 +68,6 @@ class _RootPage extends State<RootPage>{
     HomePage(),
     OrderPage(),
     FoodPage(),
-    Text("Notifications"),
     Text("Profile")
   ];
   
@@ -107,8 +107,7 @@ class _RootPage extends State<RootPage>{
         items: const[
           BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
           BottomNavigationBarItem(icon: Icon(Icons.delivery_dining_outlined),label: "Orders",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
-          BottomNavigationBarItem(icon: Icon(Icons.dashboard),label: "Sales",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications),label: "Notifications",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
+          BottomNavigationBarItem(icon: Icon(Icons.dashboard),label: "Foods",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
           BottomNavigationBarItem(icon: Icon(Icons.food_bank),label: "MyShop",backgroundColor: Color.fromARGB(255, 75, 25, 15),),
         ],
       ),

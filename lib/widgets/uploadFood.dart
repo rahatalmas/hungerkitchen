@@ -51,6 +51,7 @@ class _FoodUploadPageState extends State<FoodUploadPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.orange[100],
       appBar: AppBar(
         title: const Text('Upload Food'),
       ),
