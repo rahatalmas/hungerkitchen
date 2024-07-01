@@ -51,6 +51,10 @@ class _OrderPage extends State<OrderPage>{
     }
   }
 
+    List<Order> getPendingOrders() {
+    return _orders.where((order) => !order.orderStatus).toList();
+  }
+
   @override 
   Widget build(BuildContext context){
     return _isLoading
@@ -177,18 +181,20 @@ class _OrderPage extends State<OrderPage>{
               ),
               ListView.builder(
                 shrinkWrap: true,
+                
                 physics:const NeverScrollableScrollPhysics(),
-                itemCount: _orders.length,
+                itemCount: getPendingOrders().length,
                 itemBuilder: (BuildContext context,int index){
                   return  OrderCard(
-                  foodImage: _orders[index].foodInfo.foodPicture, 
-                  foodName: _orders[index].foodInfo.foodName,
-                  foodQuantity: _orders[index].quantity,
-                  totalPrice:_orders[index].foodInfo.foodPrice.toInt(),
-                  userName: _orders[index].userInfo.userName,
+                  foodImage: getPendingOrders()[index].foodInfo.foodPicture, 
+                  foodName: getPendingOrders()[index].foodInfo.foodName,
+                  foodQuantity: getPendingOrders()[index].quantity,
+                  totalPrice:getPendingOrders()[index].foodInfo.foodPrice.toInt(),
+                  userName: getPendingOrders()[index].userInfo.userName,
                   userLocation: "Yunus Khan Scohalars Gargen",
                   userContact: "01733783039",
-                  orderId:_orders[index].orderId
+                  orderId:_orders[index].orderId,
+                  fetchData: _fetchData,
                 );
               })
             ],

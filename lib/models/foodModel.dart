@@ -108,7 +108,7 @@ class UpdateFood{
     required this.foodPicture,
     this.foodReview,
   });
-      Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'food_name': foodName,
       'food_price': foodPrice,
