@@ -1,9 +1,10 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:hungerkitchen/models/hotelModel.dart';
+import 'package:hungerkitchen/url.dart';
 
 Future<HotelRegisterResponse> hotelRegister(hotel_name,hotel_password,hotel_description,hotel_picture) async{
-  String url = "http://192.168.243.213:5000/hotel/register";
+  String url = "$baseUrl/hotel/register";
   final response = await http.post(
       Uri.parse(url),
       headers:<String,String>{

@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:hungerkitchen/models/orderModel.dart';
+import 'package:hungerkitchen/url.dart';
 
 Future<List<Order>> fetchOrders(int hotelId) async {
-  final url = Uri.parse('http://192.168.243.213:5000/hotel/orders/$hotelId');
+  final url = Uri.parse('$baseUrl/hotel/orders/$hotelId');
 
   try {
     final response = await http.get(url);

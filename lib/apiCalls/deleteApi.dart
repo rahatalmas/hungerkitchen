@@ -1,9 +1,10 @@
+import 'package:hungerkitchen/url.dart';
 import 'package:http/http.dart' as http;
 
 Future<String> deleteFood(int foodId) async {
   try {
     final response = await http.delete(
-      Uri.parse('http://192.168.243.213:5000/hotel/$foodId'),
+      Uri.parse('$baseUrl/hotel/$foodId'),
     );
 
     if(response.statusCode == 200) {
@@ -13,6 +14,7 @@ Future<String> deleteFood(int foodId) async {
     }else {
       return 'Failed to delete food';
     }
+    
   } catch (e) {
     print('Error deleting food: $e');
     return 'Failed to delete food';

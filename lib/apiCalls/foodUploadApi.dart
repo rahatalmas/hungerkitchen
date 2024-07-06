@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:hungerkitchen/models/foodModel.dart';
+import 'package:hungerkitchen/url.dart';
 
 Future<void> uploadFood(UploadFood food, int hotelId) async {
-  final url = Uri.parse('http://192.168.243.213:5000/hotel/foodupload/$hotelId');
+  final url = Uri.parse('$baseUrl/hotel/foodupload/$hotelId');
 
   try {
     final response = await http.post(

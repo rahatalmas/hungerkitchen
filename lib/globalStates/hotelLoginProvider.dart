@@ -13,5 +13,3 @@ class LoginInfoProvider extends ChangeNotifier {
   Future<dynamic>? get loginInfo => _loginInfo;
 }
 
-
-//final provider = Provider.of<HotelProvider>(context);

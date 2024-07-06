@@ -1,10 +1,11 @@
 import 'package:http/http.dart' as http;
+import 'package:hungerkitchen/url.dart';
 
 Future<String> deleteOrder(int orderId) async {
 
   try {
     final response = await http.delete(
-      Uri.parse('http://192.168.243.213:5000/order/delete/$orderId'),
+      Uri.parse('$baseUrl/order/delete/$orderId'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
