@@ -16,7 +16,6 @@ class OrderPage extends StatefulWidget{
 class _OrderPage extends State<OrderPage>{
 
   HotelLoginResponse? _hotelData;
-
   List<Order> _orders = [];
   bool _isLoading = true;
 
@@ -52,7 +51,7 @@ class _OrderPage extends State<OrderPage>{
   }
 
     List<Order> getPendingOrders() {
-    return _orders.where((order) => !order.orderStatus).toList();
+    return _orders.where((order) => order.orderStatus==false && order.orderTime.day+1 == DateTime.now().day).toList();
   }
 
   @override 
@@ -74,27 +73,23 @@ class _OrderPage extends State<OrderPage>{
                   children: [
                     Column(
                       children: [
-                        const Row(
+                        Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Row(
                               children: [
                                 Text(
-                                  "27",
+                                  DateTime.now().day.toString()+"/",
                                   style: TextStyle(
-                                    fontSize: 35,
+                                    
                                     fontWeight: FontWeight.bold,
                                     color: Color.fromARGB(255, 73, 12, 4)
                                   ),
                                 ),
-                      
-                                Column(
-                                  children: [
-                                    Text("June"),
-                                    Text("Sat")
-                                  ],
-                                )
+                                Text(DateTime.now().month.toString()+"/"),
+                                Text(DateTime.now().year.toString())
+                               
                               ],
                             ),
                             Text(
@@ -118,7 +113,10 @@ class _OrderPage extends State<OrderPage>{
                                     fontWeight: FontWeight.w500
                                   ),
                               ),
-                              Text(_orders.length.toString(),style: const TextStyle(
+                              //Text(_orders[_orders.length-1].orderTime.day.toString()+" "+DateTime.now().day.toString()),
+                              Text(_orders.where((order){
+                                return order.orderTime.day+1 == DateTime.now().day;
+                              }).toList().length.toString(),style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500
                                   ),
@@ -130,7 +128,9 @@ class _OrderPage extends State<OrderPage>{
                                     fontWeight: FontWeight.w500
                                   ),
                               ),
-                              Text("15",style: TextStyle(
+                              Text(_orders.where((order){
+                                return order.orderStatus == false && order.orderTime.day+1 == DateTime.now().day;
+                              }).toList().length.toString(),style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500
                                   ),
@@ -142,7 +142,9 @@ class _OrderPage extends State<OrderPage>{
                                     fontWeight: FontWeight.w500
                                   ),
                               ),
-                              Text("10",style: TextStyle(
+                              Text(_orders.where((order){
+                                return order.orderStatus == true && order.orderTime.day+1 == DateTime.now().day;
+                              }).toList().length.toString(),style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500
                                   ),
@@ -180,21 +182,20 @@ class _OrderPage extends State<OrderPage>{
                   )
               ),
               ListView.builder(
-                shrinkWrap: true,
-                
+                shrinkWrap: true,          
                 physics:const NeverScrollableScrollPhysics(),
                 itemCount: getPendingOrders().length,
                 itemBuilder: (BuildContext context,int index){
+                  print(_orders.length );
                   return  OrderCard(
                   foodImage: getPendingOrders()[index].foodInfo.foodPicture, 
                   foodName: getPendingOrders()[index].foodInfo.foodName,
                   foodQuantity: getPendingOrders()[index].quantity,
                   totalPrice:getPendingOrders()[index].foodInfo.foodPrice.toInt(),
                   userName: getPendingOrders()[index].userInfo.userName,
-                  userLocation: "Yunus Khan Scohalars Gargen",
-                  userContact: "01733783039",
-                  orderId:_orders[index].orderId,
-                  fetchData: _fetchData,
+                  userLocation: getPendingOrders()[index].deliveryLocation,
+                  userContact: getPendingOrders()[index].userInfo.userContact,
+                  orderId:_orders[index].orderId,       
                 );
               })
             ],

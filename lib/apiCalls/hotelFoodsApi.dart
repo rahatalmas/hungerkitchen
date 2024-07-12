@@ -9,7 +9,6 @@ Future<List<Food>> fetchFood(int hotelId) async {
   final response = await http.get(url);
   if(response.statusCode == 200){
     List<dynamic> jsonData = jsonDecode(response.body);
-    print(jsonData);
     List<Food> foods = jsonData.map((json)=>Food.fromJson(json)).toList();
     return foods;
   } else {

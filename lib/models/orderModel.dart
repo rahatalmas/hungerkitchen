@@ -1,34 +1,22 @@
 class User {
   final int userId;
   final String userName;
-  final String userEmail;
-  final String userPassword;
   final String userContact;
-  final String userPicture;
-  final double userBudget;
-  final String? userAuthToken;
+  final String userLocation;
 
   User({
     required this.userId,
     required this.userName,
-    required this.userEmail,
-    required this.userPassword,
     required this.userContact,
-    required this.userPicture,
-    required this.userBudget,
-    required this.userAuthToken,
+    required this.userLocation
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       userId: json['user_id'] as int,
       userName: json['user_name'] as String,
-      userEmail: json['user_email'] as String,
-      userPassword: json['user_password'] as String,
       userContact: json['user_contact'] as String,
-      userPicture: json['user_picture'] as String,
-      userBudget: (json['user_budget'] as num).toDouble(),
-      userAuthToken: json['user_auth_token'] as String?,
+      userLocation: json['user_location'] as String
     );
   }
 }
@@ -41,7 +29,7 @@ class Food {
   final bool foodInStock;
   final String foodDescription;
   final String foodPicture;
-  final dynamic foodReview; // could be int or null
+  final int? foodReview;
   final int foodProviderId;
 
   Food({
@@ -52,7 +40,7 @@ class Food {
     required this.foodInStock,
     required this.foodDescription,
     required this.foodPicture,
-    required this.foodReview,
+    this.foodReview,
     required this.foodProviderId,
   });
 
@@ -65,7 +53,7 @@ class Food {
       foodInStock: json['food_instock'] as bool,
       foodDescription: json['food_description'] as String,
       foodPicture: json['food_picture'] as String,
-      foodReview: json['food_review'], // dynamic type can handle null
+      foodReview: json['food_review'] as int?,
       foodProviderId: json['food_provider_id'] as int,
     );
   }
@@ -76,6 +64,7 @@ class Order {
   final int orderedUserId;
   final int orderedFoodId;
   final int quantity;
+  final String deliveryLocation;
   final bool orderStatus;
   final DateTime orderTime;
   final User userInfo;
@@ -86,6 +75,7 @@ class Order {
     required this.orderedUserId,
     required this.orderedFoodId,
     required this.quantity,
+    required this.deliveryLocation,
     required this.orderStatus,
     required this.orderTime,
     required this.userInfo,
@@ -98,6 +88,7 @@ class Order {
       orderedUserId: json['ordered_user_id'] as int,
       orderedFoodId: json['ordered_food_id'] as int,
       quantity: json['quantity'] as int,
+      deliveryLocation: json['delivery_location'] as String,
       orderStatus: json['order_status'] as bool,
       orderTime: DateTime.parse(json['order_time'] as String),
       userInfo: User.fromJson(json['user_info'] as Map<String, dynamic>),

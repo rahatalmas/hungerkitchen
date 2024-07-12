@@ -11,8 +11,7 @@ class OrderCard extends StatefulWidget {
       required this.userName,
       required this.userLocation,
       required this.userContact,
-      required this.orderId,
-      required this.fetchData});
+      required this.orderId,});
 
   final String foodImage;
   final String foodName;
@@ -22,7 +21,6 @@ class OrderCard extends StatefulWidget {
   final String userLocation;
   final String userContact;
   final int orderId;
-  final Function() fetchData;
   @override
   State<OrderCard> createState() => _OrderCard();
 }
@@ -40,6 +38,7 @@ class _OrderCard extends State<OrderCard> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
+
               },
               child: Text('OK'),
             ),
@@ -160,7 +159,7 @@ class _OrderCard extends State<OrderCard> {
                   InkWell(
                     onTap: () {
                       _deleteOrder(widget.orderId);
-                      widget.fetchData();
+                      
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(

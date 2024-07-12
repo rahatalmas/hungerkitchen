@@ -8,12 +8,10 @@ Future<List<Order>> fetchOrders(int hotelId) async {
 
   try {
     final response = await http.get(url);
-
     if (response.statusCode == 200) {
       List<dynamic> jsonOrders = jsonDecode(response.body);
-      print(jsonOrders);
+      print("fetching order");
       List<Order> orders = jsonOrders.map((json) => Order.fromJson(json)).toList();
-      print(orders);
       return orders;
     } else {
       throw Exception('Failed to load orders');

@@ -12,6 +12,7 @@ Future<String> deleteOrder(int orderId) async {
     );
 
     if (response.statusCode == 200) {
+      print(response.statusCode);
       return 'Order deleted successfully';
     } else {
       return 'Failed to delete order: ${response.statusCode}';
